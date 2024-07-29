@@ -1,0 +1,45 @@
+{
+    "nftCards": [
+      {
+        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
+        "title": "Pudgy Bears",
+        "rank": "Pudgy Bears #189",
+        "author": "Author 1",
+        "price_eth": 2.5,
+        "price_usd": 6000
+      },
+      {
+        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
+        "title": "Crypto Kitties",
+        "rank": "Crypto Kitties #42",
+        "author": "Author 2",
+        "price_eth": 1.8,
+        "price_usd": 4320
+      },
+      {
+        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
+        "title": "Bored Apes",
+        "rank": "Bored Apes #150",
+        "author": "Author 3",
+        "price_eth": 3.1,
+        "price_usd": 7440
+      },
+      {
+        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
+        "title": "Meebits",
+        "rank": "Meebits #77",
+        "author": "Author 4",
+        "price_eth": 2.0,
+        "price_usd": 4800
+      },
+      {
+        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
+        "title": "Art Blocks",
+        "rank": "Art Blocks #233",
+        "author": "Author 5",
+        "price_eth": 1.2,
+        "price_usd": 2880
+      }
+    ]
+  }
+  
