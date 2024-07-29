@@ -32,14 +32,11 @@ export function NftSection() {
   }
 
   if (nfts.length === 0) {
-    const placeholders = Array(nftCount || 4).fill({});//f not get
     return (
       <div className={gridClasses}>
-        {placeholders.map((_, index) => (
-          <>
-          <NftCard key={index} nft={{}} loading={true} />
-          <NoDataMessage/></>
-        ))}
+        <div className="col-span-full flex justify-center items-center">
+          <NoDataMessage />
+        </div>
       </div>
     );
   }
