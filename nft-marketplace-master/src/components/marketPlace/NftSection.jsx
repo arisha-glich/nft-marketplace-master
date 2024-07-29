@@ -11,7 +11,7 @@ export function NftSection() {
   const nftCount = nfts.lenght
 
   if (loading) {
-    const placeholders = Array(nftCount || 4).fill({});
+    const placeholders = Array(nftCount || 4).fill({});//f not get
     return (
       <div className={gridClasses}>
         {placeholders.map((_, index) => (
