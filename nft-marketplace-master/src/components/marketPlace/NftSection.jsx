@@ -2,35 +2,44 @@
 import React from 'react';
 import { useFetchNfts } from '../../Hooks/useFetchNfts';
 import author from '../../assets/author.png';
-import { LoadingIndicator } from './LoadingIndicator';
 import NoDataMessage from './NoDataMessage';
+
+const gridClasses = "grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8";
 
 export function NftSection() {
   const { nfts, loading, error } = useFetchNfts();
 
   if (loading) {
     return (
-      <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
-        <LoadingIndicator />
-
+      <div className={gridClasses}>
+        {[...Array(4)].map((_, index) => (
+          <NftCard key={index} nft={{}} loading={true} />
+        ))}
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className={gridClasses}>
+        <div className="col-span-full text-center text-red-500">
+          Error: Failed to fetch data. {error.message}
+        </div>
       </div>
     );
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   if (nfts.length === 0) {
     return (
-      <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
-        <NoDataMessage />
+      <div className={gridClasses}>
+        <div className="col-span-full flex justify-center items-center">
+          <NoDataMessage />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
+    <div className={gridClasses}>
       {nfts.map((nft) => (
         <NftCard key={nft.rank} nft={nft} />
       ))}
@@ -42,7 +51,7 @@ function NftCard({ nft }) {
   return (
     <div className="card border border-secondary-border rounded-xl border-solid p-2">
       <div>
-        <img className="w-full max-h-[350px]" src={nft.image} alt="nft" />
+        <img className="w-full max-h-[350px]" src={nft.image} alt={`${nft.title} image`} />
       </div>
       <div className="pt-2 flex flex-col gap-1">
         <span className="text-sm text-[#A1A1AA]">{nft.title}</span>
@@ -70,5 +79,3 @@ function NftCard({ nft }) {
     </div>
   );
 }
-
-
