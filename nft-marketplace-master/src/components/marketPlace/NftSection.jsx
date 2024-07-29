@@ -1,30 +1,20 @@
 // src/components/NftSection/index.js
-import React, { useState, useEffect } from 'react';
-import { fetchNfts } from '../services/nftService';
+import React from 'react';
+import { useFetchNfts } from '../../Hooks/useFetchNfts';
 import author from '../../assets/author.png';
+import { LoadingIndicator } from './LoadingIndicator';
+import NoDataMessage from './NoDataMessage';
 
 export function NftSection() {
-  const [nfts, setNfts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getNfts = async () => {
-      try {
-        const data = await fetchNfts();
-        setNfts(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getNfts();
-  }, []);
+  const { nfts, loading, error } = useFetchNfts();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
+        <LoadingIndicator />
+
+      </div>
+    );
   }
 
   if (error) {
@@ -32,7 +22,11 @@ export function NftSection() {
   }
 
   if (nfts.length === 0) {
-    return <div>No data available</div>;
+    return (
+      <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
+        <NoDataMessage />
+      </div>
+    );
   }
 
   return (
@@ -76,3 +70,5 @@ function NftCard({ nft }) {
     </div>
   );
 }
+
+

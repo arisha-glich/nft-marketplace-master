@@ -1,13 +1,17 @@
 // src/components/NftSection/index.js
 import React from 'react';
-import { useFetchNfts } from '../../hooks/useFetchNfts';
+import { useFetchNfts } from './useFetchNfts';
 import author from '../../assets/author.png';
 
 export function NftSection() {
   const { nfts, loading, error } = useFetchNfts();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
+        <LoadingIndicator />
+      </div>
+    );
   }
 
   if (error) {
@@ -15,16 +19,12 @@ export function NftSection() {
   }
 
   if (nfts.length === 0) {
-    return <div>No data available</div>;
+    return (
+      <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
+        <NoDataMessage />
+      </div>
+    );
   }
-
-  return (
-    <div className="grid xlm:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-6 gap-8">
-      {nfts.map((nft) => (
-        <NftCard key={nft.rank} nft={nft} />
-      ))}
-    </div>
-  );
 }
 
 function NftCard({ nft }) {
