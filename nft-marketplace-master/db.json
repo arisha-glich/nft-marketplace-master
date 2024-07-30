@@ -1,45 +1,40 @@
 {
-    "nftCards": [
-      {
-        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
-        "title": "Pudgy Bears",
-        "rank": "Pudgy Bears #189",
-        "author": "Author 1",
-        "price_eth": 2.5,
-        "price_usd": 6000
-      },
-      {
-        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
-        "title": "Crypto Kitties",
-        "rank": "Crypto Kitties #42",
-        "author": "Author 2",
-        "price_eth": 1.8,
-        "price_usd": 4320
-      },
-      {
-        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
-        "title": "Bored Apes",
-        "rank": "Bored Apes #150",
-        "author": "Author 3",
-        "price_eth": 3.1,
-        "price_usd": 7440
-      },
-      {
-        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
-        "title": "Meebits",
-        "rank": "Meebits #77",
-        "author": "Author 4",
-        "price_eth": 2.0,
-        "price_usd": 4800
-      },
-      {
-        "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
-        "title": "Art Blocks",
-        "rank": "Art Blocks #233",
-        "author": "Author 5",
-        "price_eth": 1.2,
-        "price_usd": 2880
-      }
-    ]
-  }
-  
+  "nftCards": [
+    {
+      "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
+      "title": "DD",
+      "rank": "Crypto Kitties ",
+      "author": "Author 2kjkljlkjdslkafjlkd",
+      "price_eth": "8.8",
+      "price_usd": "4324",
+      "id": "a889"
+    },
+    {
+      "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
+      "title": "Bored Apes",
+      "rank": "Bored Apes #150",
+      "author": "Author 3",
+      "price_eth": "32",
+      "price_usd": 7440,
+      "id": "3ac9"
+    },
+    {
+      "image": "https://cdn.dribbble.com/users/5108596/screenshots/14506062/among_us-01_4x.jpg",
+      "title": "Meebits",
+      "rank": "Meebits #77",
+      "author": "Author 4",
+      "price_eth": 2,
+      "price_usd": 4800,
+      "id": "6ea9"
+    },
+    {
+      "id": "4e39",
+      "title": "Arisha",
+      "image": "https://miro.medium.com/v2/resize:fit:1080/1*8DDN_DRuSBlM74dVYUjR9Q.png",
+      "rank": "fdskj",
+      "author": "kfdjsfdfdsa",
+      "price_eth": "3",
+      "price_usd": "2"
+    }
+  ]
+}

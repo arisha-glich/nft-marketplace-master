@@ -1,27 +1,51 @@
-import { useState, useEffect } from 'react';
-import { fetchNfts } from '../services/nftService';
+import { useState, useEffect } from 'react'; // Import useState and useEffect from React
+import { fetchNfts, editNft, deleteNft } from '../services/nftService'; // Adjust the path as needed
 
-export const useFetchNfts = () => {
+export function useFetchNfts() {
   const [nfts, setNfts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getNfts = async () => {
+  const fetchData = async () => {
+    try {
       setLoading(true);
-      try {
-        const data = await fetchNfts();
-        setNfts(data);
-      } catch (error) {
-        console.error("Failed to fetch NFTs:", error);
-        setError(error.message || 'An unexpected error occurred');
-      } finally {
-        setLoading(false);
-      }
-    };
+      const data = await fetchNfts();
+      setNfts(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    getNfts();
+  useEffect(() => {
+    fetchData();
   }, []);
 
-  return { nfts, loading, error };
-};
+  const handleEditNft = async (id, nftData) => {
+    try {
+      await editNft(id, nftData);
+      fetchData(); // Refresh the data
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleDeleteNft = async (id) => {
+    try {
+      await deleteNft(id);
+      fetchData(); // Refresh the data
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  return {
+    nfts,
+    loading,
+    error,
+    refetch: fetchData,
+    editNft: handleEditNft,
+    deleteNft: handleDeleteNft
+  };
+}
