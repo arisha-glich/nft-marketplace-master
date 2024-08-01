@@ -15,6 +15,17 @@ export function EditNftPopup({ isOpen, onClose, onSave, formData }) {
     setLocalNftData(prevData => ({ ...prevData, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setLocalNftData(prevData => ({ ...prevData, image: reader.result }));
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = () => {
     if (validate()) {
       onSave(localNftData);
@@ -50,11 +61,9 @@ export function EditNftPopup({ isOpen, onClose, onSave, formData }) {
           </div>
           <div className="mb-2">
             <input
-              type="text"
+              type="file"
               name="image"
-              value={localNftData.image}
-              onChange={handleChange}
-              placeholder="Image URL"
+              onChange={handleFileChange}
               className={`p-2 border rounded w-full ${errors.image ? 'border-red-500' : 'border-gray-300'} text-black`}
             />
             {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}

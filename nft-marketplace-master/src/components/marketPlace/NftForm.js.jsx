@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export function NftForm({ formData, setFormData, onClose, onSave }) {
+  const [file, setFile] = useState(null);
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { name, value, type, files } = e.target;
+    if (type === 'file') {
+      setFile(files[0]);
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: files[0],
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Handle file upload logic here if needed
     onSave(); // Trigger save when form is submitted
   };
 
@@ -32,6 +43,16 @@ export function NftForm({ formData, setFormData, onClose, onSave }) {
           type="text"
           name="image"
           value={formData.image || ''}
+          onChange={handleChange}
+          className="w-full p-2 rounded border border-gray-400 bg-white text-black"
+          readOnly
+        />
+      </div>
+      <div>
+        <label className="block text-black">Upload Image</label>
+        <input
+          type="file"
+          name="imageFile"
           onChange={handleChange}
           className="w-full p-2 rounded border border-gray-400 bg-white text-black"
         />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useValidateNftForm } from '../../Hooks/useValidateNftForm'; // Adjust the path as needed
 
 export function NftAddPopup({ isOpen, onClose, onSave }) {
@@ -11,15 +11,32 @@ export function NftAddPopup({ isOpen, onClose, onSave }) {
     price_usd: ''
   };
 
-  const { nftData, errors, handleChange, validate } = useValidateNftForm(initialData);
+  const { nftData, errors, handleChange, validate, setNftData, setErrors } = useValidateNftForm(initialData);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        console.log('FileReader result:', reader.result); // Debug log
+        setNftData(prevData => ({ ...prevData, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    } else {
+      console.error('No file selected'); // Debug log
+    }
+  };
 
   const handleSubmit = () => {
     if (validate()) {
+      console.log('NFT Data to save:', nftData); // Debug log
       onSave(nftData);
       // Reset form data if needed
-      // setNftData(initialData);
+      setNftData(initialData);
       // Clear errors if needed
-      // setErrors({});
+      setErrors({});
+    } else {
+      console.error('Validation failed', errors); // Debug log
     }
   };
 
@@ -52,11 +69,9 @@ export function NftAddPopup({ isOpen, onClose, onSave }) {
           </div>
           <div className="mb-2">
             <input
-              type="text"
+              type="file"
               name="image"
-              value={nftData.image}
-              onChange={handleChange}
-              placeholder="Image URL"
+              onChange={handleFileChange}
               className={`p-2 border rounded w-full ${errors.image ? 'border-red-500' : 'border-gray-300'} text-black`}
             />
             {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
